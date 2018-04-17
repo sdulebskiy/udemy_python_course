@@ -1,18 +1,15 @@
 from datetime import datetime, date
+from glob2 import glob
 
 def writeToFile(fileToWriteHandler, fileFromPath):
     with open (fileFromPath, 'r') as fileToReadFrom:
-        lines = fileToReadFrom.readlines()
-        for line in lines:
-            fileToWriteHandler.write(str(line)+'\n')
-
-fileName = datetime.now()
-fileName = fileName.strftime("%y-%m-%d-%H-%M-%S-%f")
-
-with open (str(fileName), 'w') as mergedFile:
-    writeToFile(mergedFile, 'file1.txt')
-    writeToFile(mergedFile, 'file2.txt')
-    writeToFile(mergedFile, 'file3.txt')
+        fileToWriteHandler.write(fileToReadFrom.read()+'\n')
 
 
-#mergedFile.close()
+def mergeTXTFiles():
+    fileName = datetime.now().strftime("%y-%m-%d-%H-%M-%S-%f")
+    with open (fileName, 'w') as mergedFile:
+        for fileToRead in glob('*.txt'):
+            writeToFile(mergedFile, fileToRead)
+
+mergeTXTFiles()
