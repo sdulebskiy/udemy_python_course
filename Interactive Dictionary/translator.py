@@ -12,12 +12,20 @@ def translate(word):
         answer = raw_input()
         if answer == 'Y':
             return dictJson[difflib.get_close_matches(word, dictJson.keys(), 1)[0]]
-        else:
+        elif answer == 'N':
             return "Sorry. Entered word does not exist in dictionary"
+        else:
+            return "We didn't understand your entering"
     else:
         return "Sorry. Entered word does not exist in dictionary"
 
 
 wordToTranslate = raw_input("Enter a word: ")
 
-print (translate(wordToTranslate))
+result = translate(wordToTranslate)
+
+if type(result) == 'list':
+    for item in result:
+        print item
+else:
+    print result
