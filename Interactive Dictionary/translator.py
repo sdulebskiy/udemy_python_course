@@ -7,8 +7,10 @@ def translate(word):
     word = word.lower()
     if word in dictJson:
         return dictJson[word]
+    elif word.capitalize() in dictJson:
+        return dictJson[word.capitalize()]
     elif len(difflib.get_close_matches(word, dictJson.keys())) != 0:
-        print ("Cannot find any definition for word %s. Did you mean %s? Y/N" %(word, difflib.get_close_matches(word, dictJson.keys(), 1)))
+        print ("Cannot find any definition foDelphir word %s. Did you mean %s? Y/N" %(word, difflib.get_close_matches(word, dictJson.keys(), 1)))
         answer = raw_input()
         if answer == 'Y':
             return dictJson[difflib.get_close_matches(word, dictJson.keys(), 1)[0]]
