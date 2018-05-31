@@ -1,6 +1,6 @@
 from compare_function import compareFunction
 
-someInputValue = raw_input('Please enter a number: ')
+someInputValue = input('Please enter a number: ')
 
 try:
     inputNumber = int(someInputValue)
